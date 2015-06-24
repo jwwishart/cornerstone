@@ -1,5 +1,10 @@
 var express = require('express');
+var routes = require('./config/routes');
 var app = express();
+var moduleLoader = require('./modules/loader.js');
+
+moduleLoader.dumpModulesInfo(); 
+
 
 // Static File Registration
 //
@@ -11,20 +16,10 @@ app.use('/css', express.static('css'));
 // Routes ---------------------------------------------------------------------
 //
 
-// API
 
-app.get('/api/:area/:method', function(req, res) {
-    res.json({
-        area: req.params.area,
-        method: req.params.method
-    });
-});
+//routes.register(app);
 
 
-
-app.get('/', function(req, res) {
-    res.send('hello world <script src="/js/test.js"></script>');
-});
 
 
 // Middleware -----------------------------------------------------------------

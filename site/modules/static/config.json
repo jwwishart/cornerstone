@@ -1,0 +1,6 @@
+{
+    "id": "686f9cd6-8d3f-4157-9386-1cdc0f12778d",
+    "name": "Static File Module",
+    "version": 1,
+    "description": "Module for setting up standard folders that would contain static resources"
+}

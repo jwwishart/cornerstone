@@ -2,7 +2,7 @@
   "name": "cornerstone-site",
   "version": "1.0.0",
   "description": "Front End of Cornerstone Framework",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
