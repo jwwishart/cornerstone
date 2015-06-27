@@ -3,23 +3,7 @@ var routes = require('./config/routes');
 var app = express();
 var moduleLoader = require('./modules/loader.js');
 
-moduleLoader.dumpModulesInfo(); 
-
-
-// Static File Registration
-//
-
-app.use('/js', express.static('js'));
-app.use('/css', express.static('css'));
-
-
-// Routes ---------------------------------------------------------------------
-//
-
-
-//routes.register(app);
-
-
+moduleLoader.load(express, app);
 
 
 // Middleware -----------------------------------------------------------------
