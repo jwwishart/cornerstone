@@ -1,7 +1,7 @@
 
 ;
 
-var cs = require('./cornerstone.js');
+var cs = require('./cornerstone.core.js');
 
 cs.logger = {
     error: function(error) {

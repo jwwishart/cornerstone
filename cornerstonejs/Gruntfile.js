@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         },
         siteFramework: {
             src: 'dest/cornerstone.js',
-            dest: '../site/framework/cornerstone.js'
+            dest: '../site/framework/cornerstone.core.js'
         }
     }
 

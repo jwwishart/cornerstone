@@ -4,8 +4,7 @@
 
     var fs = require('fs');
     var path = require('path');
-    var cs = require('../framework/cornerstone');
-    var logger = require('../framework/logger');
+    var cs = require('../framework/cornerstone.js');
 
 
     /*
@@ -49,13 +48,16 @@
     };
 
     exports.getModuleInfo = function() {
+        var loadedModules = [];
         var results = [];
-        // Get the directories in the current directory
-        var directories = fs.readdirSync(__dirname)
-                            .filter(function(file) {
-                                return fs.statSync(path.resolve(__dirname, file)).isDirectory();
-                            });
 
+        // Get the directories in the current directory
+        var directories = cs.file.directories(__dirname);
+
+        // NOTE(jwwishart) the following file specifies WHICH modules to load and...
+        // in what order
+        var ordering = cs.file.loadConfig("modules.js");
+        
         cs.each(directories, function(dir, i) {
             var configPath = path.resolve(__dirname, dir, 'config.json');
 
@@ -63,8 +65,17 @@
                 var contents = fs.readFileSync(configPath, { encoding: 'utf-8' });
                 var obj = JSON.parse(contents);
                 obj._directory = dir;
-                results.push(obj);
+                loadedModules.push(obj);
             }
+        });
+
+        // Order the module load order... exclude ones that should not be loaded therefore
+        cs.each(ordering, function(name) {
+            cs.each(loadedModules, function(module) {
+                if (module._directory === name) {
+                    results.push(module);
+                }
+            });
         });
 
         return results;

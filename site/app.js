@@ -1,9 +1,12 @@
 var express = require('express');
-var routes = require('./config/routes');
 var app = express();
 var moduleLoader = require('./modules/loader.js');
 
 moduleLoader.load(express, app);
+
+
+// TODO(jwwishart) 404 module?
+// TODO(jwwishart) Error handling module?
 
 
 // Middleware -----------------------------------------------------------------
